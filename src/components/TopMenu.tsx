@@ -3,7 +3,7 @@ import Image from "next/image";
 import TopMenuItem from "./TopMenuItem";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
-import { Link } from "@mui/material";
+import Link from "next/link"; // ✅ Use next/link, not @mui/material/Link
 
 export default async function TopMenu() {
   const session = await getServerSession(authOptions);
@@ -18,14 +18,19 @@ export default async function TopMenu() {
         </Link>
       ) : (
         <Link href="/api/auth/signin">
-          <div className="flex items-center px-5 text-cyan-600 text-sm ">
+          <div className="flex items-center px-5 text-cyan-600 text-sm">
             Sign-In
           </div>
         </Link>
       )}
       <Link href="/mybooking">
-        <div className="flex items-center px-5 text-cyan-600 text-sm ">
+        <div className="flex items-center px-5 text-cyan-600 text-sm">
           My Booking
+        </div>
+      </Link>
+      <Link href="/"> 
+        <div className="flex items-center px-5 text-cyan-600 text-sm">
+          Home
         </div>
       </Link>
       <div className="absolute right-0 flex flex-row h-full">
