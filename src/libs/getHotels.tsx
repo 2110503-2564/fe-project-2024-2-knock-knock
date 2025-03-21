@@ -1,6 +1,6 @@
 import { resolve } from "path";
 
-export default async function getVenues() {
+export default async function getHotels() {
   await new Promise((resolve) => setTimeout(resolve, 300));
 
   const response = await fetch(

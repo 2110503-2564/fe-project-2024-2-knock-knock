@@ -10,15 +10,15 @@ export default function DateReserve({
   onNameChange,
   onTelChange,
   onDateChange,
-  onVenueChange,
+  onHotelChange,
 }: {
   onNameChange: Function;
   onTelChange: Function;
   onDateChange: Function;
-  onVenueChange: Function;
+  onHotelChange: Function;
 }) {
   const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
-  const [venue, setVenue] = useState("MountainViewInn");
+  const [hotel, setHotel] = useState("MountainViewInn");
   const [nameLastname, setName] = useState<string>("");
   const [tel, setTel] = useState<string>("");
 
@@ -49,13 +49,13 @@ export default function DateReserve({
       ></TextField>
       <Select
         variant="standard"
-        name="venue"
-        id="venue"
-        value={venue}
+        name="hotel"
+        id="hotel"
+        value={hotel}
         className="h-[2em] w-[200px]"
         onChange={(e) => {
-          setVenue(e.target.value);
-          onVenueChange(e.target.value);
+          setHotel(e.target.value);
+          onHotelChange(e.target.value);
         }}
       >
         <MenuItem value="MountainViewInn">Mountain View Inn</MenuItem>

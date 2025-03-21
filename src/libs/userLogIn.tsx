@@ -3,7 +3,7 @@ export default async function userLogin(
   userPassword: string
 ) {
   const response = await fetch(
-    "https://a08-venue-explorer-backend.vercel.app/api/v1/auth/login",
+    "http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/auth/login",
     {
       method: "POST",
       headers: {

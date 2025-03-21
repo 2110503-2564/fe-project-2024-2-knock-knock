@@ -1,4 +1,4 @@
-interface VenueItem {
+interface HotelItem {
   _id: string;
   name: string;
   address: string;
@@ -8,16 +8,17 @@ interface VenueItem {
   __v: number;
 }
 
-interface VenueJson {
+interface HotelJson {
   success: boolean;
   count: number;
   pagination: Object;
-  data: VenueItem[];
+  data: HotelItem[];
 }
 
 interface BookingItem {
+  bookingDate: Date;
   nameLastname: string;
   tel: string;
-  venue: string;
-  bookDate: string;
+  hotel: string;
+  createdAt: string;
 }

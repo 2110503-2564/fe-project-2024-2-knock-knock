@@ -1,23 +1,23 @@
 import Image from "next/image";
-import getVenue from "@/libs/getVenue";
+import getHotel from "@/libs/getHotel";
 import Link from "next/link";
 
-export default async function VenueDetailPage({
+export default async function HotelDetailPage({
   params,
 }: {
   params: { vid: string };
 }) {
-  const venueDetail = await getVenue(params.vid);
+  const hotelDetail = await getHotel(params.vid);
 
   return (
     <main className="text-center p-5">
       <h1 className="text-lg font-medium text-black">
-        {venueDetail.data.name}
+        {hotelDetail.data.name}
       </h1>
       <div className="flex flex-row my-5">
         <Image
-          src={venueDetail.data.picture}
-          alt="Venue Image"
+          src={hotelDetail.data.picture}
+          alt="Hotel Image"
           width={0}
           height={0}
           sizes="100vw"
@@ -25,22 +25,22 @@ export default async function VenueDetailPage({
         />
         <div className="text-md mx-5 text-black">
           <div className="text-md mx-5 text-black text-left">
-            Name: {venueDetail.data.name}
+            Name: {hotelDetail.data.name}
           </div>
           <div className="text-md mx-5 text-black text-left">
-            Address: {venueDetail.data.address}{" "}
+            Address: {hotelDetail.data.address}{" "}
           </div>
           <div className="text-md mx-5 text-black text-left">
-            Tel: {venueDetail.data.telephone}{" "}
+            Tel: {hotelDetail.data.telephone}{" "}
           </div>
           <Link
-            href={`/booking?id=${params.vid}&model=${venueDetail.data.model}`}
+            href={`/booking?id=${params.vid}&model=${hotelDetail.data.model}`}
           >
             <button
               className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
-              name="Book Venue"
+              name="Book Hotel"
             >
-              Book Venue
+              Book Hotel
             </button>
           </Link>
         </div>
