@@ -31,7 +31,7 @@ export default async function TopMenu() {
       <div className="absolute right-0 flex flex-row h-full">
         <TopMenuItem title="Menu Item Booking" pageRef="/booking" />
         <Image
-          src={"/img/logo.png"}
+          src={"/img/logo_hotel.jpg"}
           className={styles.logoimg}
           alt="logo"
           width={0}

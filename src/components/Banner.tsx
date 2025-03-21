@@ -7,10 +7,10 @@ import { useSession } from "next-auth/react";
 
 export default function Banner() {
   const covers = [
-    "/img/cover.jpg",
-    "/img/cover2.jpg",
-    "/img/cover3.jpg",
-    "/img/cover4.jpg",
+    "/img/cover_hotel.jpg",
+    "/img/cover_hotel.jpg",
+    "/img/cover_hotel.jpg",
+    "/img/cover_hotel.jpg"
   ];
   const [index, setIndex] = useState(0);
   const router = useRouter();
@@ -32,30 +32,37 @@ export default function Banner() {
         priority
         objectFit="cover"
       />
-      <div className={styles.bannerText}>
-        <h1 className="text-4xl font-medium">
-          where every event finds its venue
-        </h1>
-        <h3 className="text-xl font-serif">
-          Finding the perfect venue has never been easier. Whether it's a
-          wedding, corporate event, we connecting people to the perfect place.
-        </h3>
-      </div>
+
+    <div className={`${styles.bannerText} text-center py-12 px-6 bg-white/20 backdrop-blur-md text-white rounded-lg shadow-lg`}>
+      <h1 className="text-5xl font-extrabold tracking-wide mb-4 drop-shadow-lg">
+        Your perfect stay, just a booking away.
+      </h1>
+      <h3 className="text-2xl font-light italic leading-relaxed drop-shadow-md">
+        Whether it’s a lavish escape, a cozy hideaway, or a business retreat,  
+        we help you find the ideal hotel for every journey.
+      </h3>
+    </div>
+
+
       {session ? (
         <div className="z-30 absolute right-10 top-5 font-semibold text-cyan-800 text-xl">
           Welcome {session.user?.name}
         </div>
       ) : null}
       <button
-        className="bg-white text-cyan-600 border border-cyan-600 font-semibold py-2 px-2 m-2 rounded z-30 absolute bottom-0 right-0 hover:bg-cyan-600 hover:text-white hover:border-transparent"
+        className="bg-white text-cyan-600 border border-cyan-600 font-semibold py-3 px-6 m-4 rounded-full z-30 absolute bottom-4 right-4 
+                  shadow-md transition-all duration-300 ease-in-out 
+                  hover:bg-cyan-600 hover:text-white hover:border-transparent hover:scale-105 
+                  focus:ring-2 focus:ring-cyan-400 active:scale-95"
         onClick={(e) => {
-          e.stopPropagation;
-          e.preventDefault;
+          e.stopPropagation();
+          e.preventDefault();
           router.push("/venue");
         }}
       >
-        Select Venue
+        ✨ Select Hotel
       </button>
+
     </div>
   );
 }
