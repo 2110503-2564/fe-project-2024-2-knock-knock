@@ -14,14 +14,14 @@ export default function BookingList() {
         : hotelItems.map((bookItem) => (
             <div
               className="bg-slate-200 rounded px-5 mx-5 py-2 my-2 text-black"
-              key={bookItem.nameLastname}
+              key={bookItem.user}
             >
               <div className="text-xl">
-                Name-Lastname : {bookItem.nameLastname}
+                Name-Lastname : {bookItem.user}
               </div>
-              <div className="text-xl">Contact-Number : {bookItem.tel}</div>
+              <div className="text-xl">Nights : {bookItem.nights}</div>
               <div className="text-xl">Hotel : {bookItem.hotel}</div>
-              <div className="text-xl">Book-Date : {bookItem.bookingDate.toString()}</div>
+              <div className="text-xl">Book-Date : {new Date(bookItem.bookingDate).toLocaleDateString()}</div>
               <button
                 className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
                 name="Book Hotel"

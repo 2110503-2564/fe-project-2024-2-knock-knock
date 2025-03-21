@@ -17,8 +17,8 @@ interface HotelJson {
 
 interface BookingItem {
   bookingDate: Date;
-  nameLastname: string;
-  tel: string;
+  user: string;
+  nights: number;
   hotel: string;
-  createdAt: string;
+  createdAt: Date;
 }

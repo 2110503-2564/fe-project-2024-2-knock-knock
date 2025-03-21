@@ -7,7 +7,7 @@ export default async function getHotels() {
     "http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels"
   );
   if (!response.ok) {
-    throw new Error("Failed to fetch cars");
+    throw new Error("Failed to fetch hotels");
   }
   return await response.json();
 }

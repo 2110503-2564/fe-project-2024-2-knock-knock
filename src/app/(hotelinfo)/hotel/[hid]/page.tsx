@@ -5,9 +5,9 @@ import Link from "next/link";
 export default async function HotelDetailPage({
   params,
 }: {
-  params: { vid: string };
+  params: { hid: string };
 }) {
-  const hotelDetail = await getHotel(params.vid);
+  const hotelDetail = await getHotel(params.hid);
 
   return (
     <main className="text-center p-5">
@@ -34,7 +34,7 @@ export default async function HotelDetailPage({
             Tel: {hotelDetail.data.telephone}{" "}
           </div>
           <Link
-            href={`/booking?id=${params.vid}&model=${hotelDetail.data.model}`}
+            href={`/booking?id=${params.hid}&model=${hotelDetail.data.model}`}
           >
             <button
               className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
@@ -50,5 +50,5 @@ export default async function HotelDetailPage({
 }
 
 // export async function generateStaticParams() {
-//   return [{ vid: "001" }, { vid: "002" }, { vid: "003" }];
+//   return [{ hid: "001" }, { hid: "002" }, { hid: "003" }];
 // }

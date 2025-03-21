@@ -26,8 +26,8 @@ export const bookSlice = createSlice({
     removeBooking: (state, action: PayloadAction<BookingItem>) => {
       const remainItems = state.bookItems.filter((obj) => {
         return (
-          obj.nameLastname !== action.payload.nameLastname ||
-          obj.tel !== action.payload.tel ||
+          obj.user !== action.payload.user ||
+          obj.nights !== action.payload.nights ||
           obj.hotel !== action.payload.hotel ||
           obj.bookingDate !== action.payload.bookingDate
         );

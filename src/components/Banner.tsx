@@ -57,7 +57,7 @@ export default function Banner() {
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
-          router.push("/venue");
+          router.push("/hotel");
         }}
       >
         ✨ Select Hotel
