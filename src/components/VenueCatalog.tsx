@@ -21,7 +21,7 @@ export default async function VenueCatalog({
         }}
       >
         {(await venuesJson).data.map((VenueItem) => (
-          <Link href={`/venue/${VenueItem.id}`} className="w-1/5">
+          <Link href={`/venue/${VenueItem._id}`} className="w-1/5">
             <Card
               key={VenueItem.name}
               venueName={VenueItem.name}

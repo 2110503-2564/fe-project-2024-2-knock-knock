@@ -9,19 +9,6 @@ export default async function VenueDetailPage({
 }) {
   const venueDetail = await getVenue(params.vid);
 
-  // const mockVenueRepo = new Map();
-  // mockVenueRepo.set("001", {
-  //   name: "The Bloom Pavilion",
-  //   imgSrc: "/img/bloom.jpg",
-  // });
-  // mockVenueRepo.set("002", {
-  //   name: "Spark Space",
-  //   imgSrc: "/img/sparkspace.jpg",
-  // });
-  // mockVenueRepo.set("003", {
-  //   name: "The Grand Table",
-  //   imgSrc: "/img/grandtable.jpg",
-  // });
   return (
     <main className="text-center p-5">
       <h1 className="text-lg font-medium text-black">
@@ -44,16 +31,7 @@ export default async function VenueDetailPage({
             Address: {venueDetail.data.address}{" "}
           </div>
           <div className="text-md mx-5 text-black text-left">
-            District: {venueDetail.data.district}{" "}
-          </div>
-          <div className="text-md mx-5 text-black text-left">
-            Postal Code: {venueDetail.data.postalcode}{" "}
-          </div>
-          <div className="text-md mx-5 text-black text-left">
-            Tel: {venueDetail.data.tel}{" "}
-          </div>
-          <div className="text-md mx-5 text-black text-left">
-            Daily Rate: {venueDetail.data.dailyrate}{" "}
+            Tel: {venueDetail.data.telephone}{" "}
           </div>
           <Link
             href={`/booking?id=${params.vid}&model=${venueDetail.data.model}`}

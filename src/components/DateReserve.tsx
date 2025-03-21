@@ -18,7 +18,7 @@ export default function DateReserve({
   onVenueChange: Function;
 }) {
   const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
-  const [venue, setVenue] = useState("Bloom");
+  const [venue, setVenue] = useState("MountainViewInn");
   const [nameLastname, setName] = useState<string>("");
   const [tel, setTel] = useState<string>("");
 
@@ -58,9 +58,9 @@ export default function DateReserve({
           onVenueChange(e.target.value);
         }}
       >
-        <MenuItem value="Bloom">The Bloom Pavilion</MenuItem>
-        <MenuItem value="Spark">Spark Space</MenuItem>
-        <MenuItem value="GrandTable ">The Grand Table</MenuItem>
+        <MenuItem value="MountainViewInn">Mountain View Inn</MenuItem>
+        <MenuItem value="OceanBreezeResort">Ocean Breeze Resort</MenuItem>
+        <MenuItem value="HotelSunshine">Hotel Sunshine</MenuItem>
       </Select>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker
