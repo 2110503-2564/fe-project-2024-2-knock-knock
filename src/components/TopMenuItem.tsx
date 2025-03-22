@@ -9,7 +9,7 @@ export default function TopMenuItem({
   pageRef: string;
 }) {
   return (
-    <Link href={pageRef} className={styles.itemcontainer}>
+    <Link href={pageRef} className={"flex items-center px-5 py-2 mx-1 rounded-md text-cyan-700 text-sm hover:bg-cyan-100 transition-all duration-200"}>
       {title}
     </Link>
   );

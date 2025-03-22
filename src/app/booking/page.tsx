@@ -53,7 +53,7 @@ export default function Booking() {
           />
         </div>
         <button
-          className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
+          className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm transition duration-500"
           name="Book Hotel"
           onClick={makebooking}
         >
@@ -63,16 +63,16 @@ export default function Booking() {
 
       {/* Modal for over 3 nights */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-          <div className="bg-white rounded-xl shadow-lg w-[90%] max-w-md p-6">
-            <h2 className="text-xl font-bold text-red-600 mb-2 text-center">Sorry</h2>
-            <p className="text-gray-700 text-center">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl w-[90%] max-w-md p-6 animate-fadeIn">
+            <h2 className="text-xl font-bold text-red-600 mb-3 text-center">Sorry</h2>
+            <p className="text-gray-800 text-center">
               You can't book more than 3 nights at once.
             </p>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-5">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md"
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-200"
               >
                 OK
               </button>
@@ -80,6 +80,7 @@ export default function Booking() {
           </div>
         </div>
       )}
+
     </>
   );
 }

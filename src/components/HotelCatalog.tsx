@@ -7,23 +7,27 @@ export default async function HotelCatalog({
   hotelsJson: Promise<HotelJson>;
 }) {
   const hotelJsonReady = await hotelsJson;
+
   return (
-    <div className="text-black">
-      Explore {(await hotelsJson).count} fabulous hotels in our hotel catalog
+    <div className="text-black px-6 py-10">
+      <h1 className="text-2xl font-semibold text-center mb-6">
+        Explore {hotelJsonReady.count} Fabulous Hotels in Our Catalog
+      </h1>
+
       <div
-        style={{
-          margin: "20px",
-          display: "flex",
-          flexDirection: "row",
-          alignContent: "space-around",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
+        className={`grid gap-6 ${
+          hotelJsonReady.data.length === 3
+            ? "grid-cols-3 justify-center"
+            : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        }`}
       >
-        {(await hotelsJson).data.map((HotelItem) => (
-          <Link href={`/hotel/${HotelItem._id}`} className="w-1/5">
+        {hotelJsonReady.data.map((HotelItem) => (
+          <Link
+            key={HotelItem._id}
+            href={`/hotel/${HotelItem._id}`}
+            className="transform transition duration-300 hover:scale-105"
+          >
             <Card
-              key={HotelItem.name}
               hotelName={HotelItem.name}
               imgSrc={HotelItem.picture}
             />

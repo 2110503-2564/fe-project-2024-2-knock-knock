@@ -3,45 +3,41 @@ import Image from "next/image";
 import TopMenuItem from "./TopMenuItem";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
-import Link from "next/link"; // ✅ Use next/link, not @mui/material/Link
+import Link from "next/link";
 
 export default async function TopMenu() {
   const session = await getServerSession(authOptions);
+
+  const linkClass =
+    "flex items-center px-5 py-2 mx-1 rounded-md text-cyan-700 text-sm hover:bg-cyan-100 transition-all duration-200";
 
   return (
     <div className={styles.menucontainer}>
       {session ? (
         <Link href="/api/auth/signout">
-          <div className="flex items-center px-5 text-cyan-600 text-sm">
+          <div className={linkClass}>
             Sign-Out of {session.user?.name}
           </div>
         </Link>
       ) : (
         <Link href="/api/auth/signin">
-          <div className="flex items-center px-5 text-cyan-600 text-sm">
-            Sign-In
-          </div>
+          <div className={linkClass}>Sign-In</div>
         </Link>
       )}
       <Link href="/mybooking">
-        <div className="flex items-center px-5 text-cyan-600 text-sm">
-          My Booking
-        </div>
+        <div className={linkClass}>My Booking</div>
       </Link>
-      <Link href="/"> 
-        <div className="flex items-center px-5 text-cyan-600 text-sm">
-          Home
-        </div>
+      <Link href="/">
+        <div className={linkClass}>Home</div>
       </Link>
-      <div className="absolute right-0 flex flex-row h-full">
+      <div className="absolute right-0 flex flex-row h-full items-center pr-4">
         <TopMenuItem title="Menu Item Booking" pageRef="/booking" />
         <Image
           src={"/img/logo_hotel.jpg"}
           className={styles.logoimg}
           alt="logo"
-          width={0}
-          height={0}
-          sizes="100vh"
+          width={40}
+          height={40}
         />
       </div>
     </div>
