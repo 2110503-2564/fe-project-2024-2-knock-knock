@@ -60,7 +60,7 @@ export default function Banner() {
           router.push("/hotel");
         }}
       >
-        ✨ Select Hotel
+        Select Hotel
       </button>
 
     </div>
