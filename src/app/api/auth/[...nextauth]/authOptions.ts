@@ -43,4 +43,8 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
+  pages: {
+    signIn: '/auth/signin', // must match the App Router route
+  },
+
 };
