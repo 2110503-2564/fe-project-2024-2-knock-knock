@@ -46,7 +46,7 @@ export default function BookingListClient({
                   onClick={() => {
                     handleDelete(bookItem._id);
                   }}
-                  className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-medium shadow-md hover:shadow-lg transition duration-300"
+                  className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-medium shadow-md hover:shadow-lg transition duration-300 shadow-md transform hover:scale-105"
                 >
                   Remove from list
                 </button>
@@ -54,7 +54,7 @@ export default function BookingListClient({
                   onClick={() => {
                     router.push(`/mybooking/${bookItem._id}`)
                   }}
-                  className="px-5 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium shadow-md hover:shadow-lg transition duration-300"
+                  className="px-5 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium shadow-md hover:shadow-lg transition duration-300 shadow-md transform hover:scale-105"
                 >
                   Update Booking
                 </button>

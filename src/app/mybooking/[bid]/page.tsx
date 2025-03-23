@@ -29,27 +29,34 @@ export default function UpdateBooking({ params }: { params: { bid: string } }) {
       );
     }
   };
+
   return (
     <>
-      <main className="w-[100%] flex flex-col item-center space-y-4">
-        <div className="text-xl font-medium text-black">Hotel Booking</div>
-        <div className="w-fit space-y-2 ">
-          <div className="text-md text-left text-gray-600">
-            Pick-Up Date and Location
+      <main className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-r from-sky-100 to-white">
+        <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-3xl space-y-6">
+          <h1 className="text-3xl font-bold text-center text-gray-800">
+            Update Your Booking
+          </h1>
+
+          <div className="space-y-1">
+            <label className="text-gray-600 text-sm font-medium">
+              Select Date, Hotel, and Number of Nights
+            </label>
+            <DateReserve
+              onNightChange={(value: number) => setNight(value)}
+              onDateChange={(value: Dayjs) => setBookDate(value)}
+              onHotelChange={(value: string) => setHotel(value)}
+            />
           </div>
-          <DateReserve
-            onNightChange={(value: number) => setNight(value)}
-            onDateChange={(value: Dayjs) => setBookDate(value)}
-            onHotelChange={(value: string) => setHotel(value)}
-          />
+
+          <button
+              className="w-full mt-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 transition duration-300 shadow-md transform hover:scale-105"
+            name="Update Booking"
+            onClick={makebooking}
+          >
+            Update Booking
+          </button>
         </div>
-        <button
-          className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm transition duration-500"
-          name="Book Hotel"
-          onClick={makebooking}
-        >
-          Book Hotel
-        </button>
       </main>
 
       {/* Modal for over 3 nights */}
