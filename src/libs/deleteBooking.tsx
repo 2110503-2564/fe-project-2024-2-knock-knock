@@ -1,6 +1,6 @@
 export default async function deleteBooking(bookingId: string, token: string) {
   const response = await fetch(
-    `http://localhost:5000/api/v1/bookings/${bookingId}`,
+    `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/bookings/${bookingId}`,
     {
       method: "DELETE",
       headers: {
