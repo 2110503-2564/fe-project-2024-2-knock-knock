@@ -16,9 +16,16 @@ interface HotelJson {
 }
 
 interface BookingItem {
+  _id: string;
   bookingDate: Date;
   user: string;
   nights: number;
   hotel: string;
   createdAt: Date;
+}
+
+interface BookingJson {
+  success: boolean;
+  count: number;
+  data: BookingItem[];
 }

@@ -7,25 +7,17 @@ import { useState } from "react";
 import { Dayjs } from "dayjs";
 
 export default function DateReserve({
-  onNameChange,
   onNightChange,
   onDateChange,
   onHotelChange,
 }: {
-  onNameChange: Function;
   onNightChange: Function;
   onDateChange: Function;
   onHotelChange: Function;
 }) {
   const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
   const [hotel, setHotel] = useState("MountainViewInn");
-  const [nameLastname, setName] = useState<string>("");
   const [nights, setNight] = useState<number>(1);
-
-  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
-    onNameChange(event.target.value);
-  };
 
   const handleNightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNight(Number(event.target.value));
@@ -33,13 +25,6 @@ export default function DateReserve({
   };
   return (
     <div className="bg-slate-100 rounded-lg space-x-5 space-y-2 w-fit px-10 py-5 flex flex-row justify-center">
-      <TextField
-        variant="standard"
-        name="Name-Lastname"
-        label="Name-Lastname"
-        value={nameLastname}
-        onChange={handleNameChange}
-      ></TextField>
       <TextField
         variant="standard"
         name="Nights"

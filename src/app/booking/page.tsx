@@ -14,7 +14,6 @@ const localHotels = [
 export default function Booking() {
   const [bookingDate, setBookDate] = useState<Dayjs | null>(null);
   const [hotel, setHotel] = useState("MountainViewInn");
-  const [user, setUser] = useState<string>("");
   const [nights, setNight] = useState<number>(1);
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
@@ -25,10 +24,10 @@ export default function Booking() {
       return;
     }
 
-    if (bookingDate && hotel && nights && user) {
+    if (bookingDate && hotel && nights ) {
       const selectedHotel = localHotels.find((h) => h.name === hotel);
       if (!selectedHotel) {
-        console.error("ไม่พบโรงแรมที่มีชื่อนี้");
+        console.error("Not found");
         return;
       }
       const hotelId = selectedHotel.id;
@@ -51,7 +50,6 @@ export default function Booking() {
             Pick-Up Date and Location
           </div>
           <DateReserve
-            onNameChange={(value: string) => setUser(value)}
             onNightChange={(value: number) => setNight(value)}
             onDateChange={(value: Dayjs) => setBookDate(value)}
             onHotelChange={(value: string) => setHotel(value)}
