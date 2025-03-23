@@ -3,7 +3,7 @@ export default async function userLogin(
   userPassword: string
 ) {
   const response = await fetch(
-    "http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/auth/login",
+    "http://localhost:5000/api/v1/auth/login",
     {
       method: "POST",
       headers: {

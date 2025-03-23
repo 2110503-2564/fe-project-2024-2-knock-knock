@@ -16,7 +16,7 @@ export default function DateReserve({
   onHotelChange: Function;
 }) {
   const [reserveDate, setReserveDate] = useState<Dayjs | null>(null);
-  const [hotel, setHotel] = useState("MountainViewInn");
+  const [hotel, setHotel] = useState("Mountain View Inn");
   const [nights, setNight] = useState<number>(1);
 
   const handleNightChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,9 +43,9 @@ export default function DateReserve({
           onHotelChange(e.target.value);
         }}
       >
-        <MenuItem value="MountainViewInn">Mountain View Inn</MenuItem>
-        <MenuItem value="OceanBreezeResort">Ocean Breeze Resort</MenuItem>
-        <MenuItem value="HotelSunshine">Hotel Sunshine</MenuItem>
+        <MenuItem value="Mountain View Inn">Mountain View Inn</MenuItem>
+        <MenuItem value="Ocean Breeze Resort">Ocean Breeze Resort</MenuItem>
+        <MenuItem value="Hotel Sunshine">Hotel Sunshine</MenuItem>
       </Select>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DatePicker

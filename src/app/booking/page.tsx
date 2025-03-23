@@ -1,19 +1,19 @@
 "use client";
 import DateReserve from "@/components/DateReserve";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import addBooking from "@/libs/addBooking";
 import { useSession } from "next-auth/react";
 
 const localHotels = [
-  { id: "67dd2c1571dd25247abb1a41", name: "MountainViewInn" },
-  { id: "67dd2bf171dd25247abb1a3e", name: "OceanBreezeResort" },
-  { id: "67dd2a6371dd25247abb1a38", name: "HotelSunshine" },
+  { id: "67dd2c1571dd25247abb1a41", name: "Mountain View Inn" },
+  { id: "67dd2bf171dd25247abb1a3e", name: "Ocean Breeze Resort" },
+  { id: "67dd2a6371dd25247abb1a38", name: "Hotel Sunshine" },
 ];
 
 export default function Booking() {
   const [bookingDate, setBookDate] = useState<Dayjs | null>(null);
-  const [hotel, setHotel] = useState("MountainViewInn");
+  const [hotel, setHotel] = useState("Mountain View Inn");
   const [nights, setNight] = useState<number>(1);
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
