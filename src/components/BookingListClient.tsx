@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import deleteBooking from "@/libs/deleteBooking";
 
 export default function BookingListClient({
@@ -14,6 +15,7 @@ export default function BookingListClient({
     await deleteBooking(id, token);
     setBookings(bookings.filter((item) => item._id !== id));
   };
+  const router = useRouter();
   return (
     <div className="w-full flex flex-col items-center px-6 py-10">
       {bookings.length === 0 ? (
@@ -39,7 +41,7 @@ export default function BookingListClient({
                 <span className="text-gray-600">Book Date:</span>{" "}
                 {new Date(bookItem.bookingDate).toLocaleDateString()}
               </div>
-              <div className="pt-2">
+              <div className="pt-2 flex space-x-3">
                 <button
                   onClick={() => {
                     handleDelete(bookItem._id);
@@ -47,6 +49,14 @@ export default function BookingListClient({
                   className="px-5 py-2 rounded-full bg-red-600 hover:bg-red-700 text-white font-medium shadow-md hover:shadow-lg transition duration-300"
                 >
                   Remove from list
+                </button>
+                <button
+                  onClick={() => {
+                    router.push(`/mybooking/${bookItem._id}`)
+                  }}
+                  className="px-5 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium shadow-md hover:shadow-lg transition duration-300"
+                >
+                  Update Booking
                 </button>
               </div>
             </div>
