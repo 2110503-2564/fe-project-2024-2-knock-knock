@@ -1,40 +1,45 @@
 "use client";
 import DateReserve from "@/components/DateReserve";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
-import { addBooking } from "@/redux/features/bookSlice";
+import addBooking from "@/libs/addBooking";
+import { useSession } from "next-auth/react";
+
+const localHotels = [
+  { id: "67dd2c1571dd25247abb1a41", name: "MountainViewInn" },
+  { id: "67dd2bf171dd25247abb1a3e", name: "OceanBreezeResort" },
+  { id: "67dd2a6371dd25247abb1a38", name: "HotelSunshine" },
+];
 
 export default function Booking() {
   const [bookingDate, setBookDate] = useState<Dayjs | null>(null);
   const [hotel, setHotel] = useState("MountainViewInn");
   const [user, setUser] = useState<string>("");
   const [nights, setNight] = useState<number>(1);
-
-  const dispatch = useDispatch<AppDispatch>();
-
   const [showModal, setShowModal] = useState(false);
+  const { data: session } = useSession();
 
-  const makebooking = () => {
-
+  const makebooking = async () => {
     if (nights > 3) {
       setShowModal(true);
       return;
     }
-    
+
     if (bookingDate && hotel && nights && user) {
-      const item: BookingItem = {
-        user: String(user),
-        nights: nights,
-        hotel: hotel,
-        bookingDate: dayjs(
-          dayjs(bookingDate).format("YYYY/MM/DD"),
-          "YYYY/MM/DD"
-        ).toDate(),
-        createdAt: new Date(),
-      };
-      dispatch(addBooking(item));
+      const selectedHotel = localHotels.find((h) => h.name === hotel);
+      if (!selectedHotel) {
+        console.error("ไม่พบโรงแรมที่มีชื่อนี้");
+        return;
+      }
+      const hotelId = selectedHotel.id;
+
+      const bookingDateString = dayjs(bookingDate).format("YYYY-MM-DD");
+      const result = await addBooking(
+        hotelId,
+        bookingDateString,
+        nights,
+        session?.user.token || ""
+      );
     }
   };
   return (
@@ -65,7 +70,9 @@ export default function Booking() {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="bg-white rounded-2xl shadow-2xl w-[90%] max-w-md p-6 animate-fadeIn">
-            <h2 className="text-xl font-bold text-red-600 mb-3 text-center">Sorry</h2>
+            <h2 className="text-xl font-bold text-red-600 mb-3 text-center">
+              Sorry
+            </h2>
             <p className="text-gray-800 text-center">
               You can't book more than 3 nights at once.
             </p>
@@ -80,7 +87,6 @@ export default function Booking() {
           </div>
         </div>
       )}
-
     </>
   );
 }
