@@ -32,8 +32,8 @@ export default function UpdateBooking({ params }: { params: { bid: string } }) {
 
   return (
     <>
-      <main className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-r from-sky-100 to-white">
-        <div className="bg-white rounded-3xl shadow-2xl p-10 w-full max-w-3xl space-y-6">
+      <main className="min-h-screen w-screen items-center justify-center bg-gradient-to-r from-sky-100 to-white pt-20">
+        <div className="bg-white rounded-3xl shadow-2xl px-12 py-10 w-full max-w-3xl mx-auto space-y-8 mt-10">
           <h1 className="text-3xl font-bold text-center text-gray-800">
             Update Your Booking
           </h1>
@@ -72,7 +72,7 @@ export default function UpdateBooking({ params }: { params: { bid: string } }) {
             <div className="flex justify-center mt-5">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-200"
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-300 shadow-md transform hover:scale-105"
               >
                 OK
               </button>

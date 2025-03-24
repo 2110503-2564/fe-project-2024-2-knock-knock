@@ -6,9 +6,9 @@ import addBooking from "@/libs/addBooking";
 import { useSession } from "next-auth/react";
 
 const localHotels = [
-  { id: "67dd2c1571dd25247abb1a41", name: "Mountain View Inn" },
-  { id: "67dd2bf171dd25247abb1a3e", name: "Ocean Breeze Resort" },
-  { id: "67dd2a6371dd25247abb1a38", name: "Hotel Sunshine" },
+  { id: "67e054f51510ca6539eca21d", name: "Mountain View Inn" },
+  { id: "67e055471510ca6539eca223", name: "Ocean Breeze Resort" },
+  { id: "67e055291510ca6539eca220", name: "Hotel Sunshine" },
 ];
 
 export default function Booking() {
@@ -44,14 +44,14 @@ export default function Booking() {
 
   return (
     <>
-      <main className="min-h-screen w-screen flex items-center justify-center bg-gradient-to-r from-sky-100 to-white">
-        <div className="bg-white rounded-3xl shadow-2xl px-12 py-10 w-full max-w-3xl mx-auto space-y-8">
+      <main className="min-h-screen w-screen items-center justify-center bg-gradient-to-r from-sky-100 to-white pt-20">
+        <div className="bg-white rounded-3xl shadow-2xl px-12 py-10 w-full max-w-3xl mx-auto space-y-8 mt-10">
           <h1 className="text-3xl font-bold text-center text-gray-800">
             Book a Hotel
           </h1>
 
           <div className="space-y-2">
-            <label className="text-gray-600 text-lg font-medium block">
+            <label className="text-gray-600 text-lg font-medium">
               Choose your date, hotel, and number of nights
             </label>
             <DateReserve
@@ -85,7 +85,7 @@ export default function Booking() {
             <div className="flex justify-center mt-5">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-200"
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition duration-300 shadow-md transform hover:scale-105"
               >
                 OK
               </button>
