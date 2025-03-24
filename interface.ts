@@ -4,6 +4,8 @@ interface HotelItem {
   address: string;
   telephone: string;
   picture: string;
+  price: number;
+  promotion: string;
   createdAt: Date;
   __v: number;
 }

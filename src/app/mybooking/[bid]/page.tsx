@@ -4,6 +4,7 @@ import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { useSession } from "next-auth/react";
 import updateBooking from "@/libs/updateBooking";
+import { useRouter } from "next/navigation";
 
 export default function UpdateBooking({ params }: { params: { bid: string } }) {
   const [bookingDate, setBookDate] = useState<Dayjs | null>(null);
@@ -11,7 +12,8 @@ export default function UpdateBooking({ params }: { params: { bid: string } }) {
   const [nights, setNight] = useState<number>(1);
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
-
+  const router = useRouter();
+  
   const makebooking = async () => {
     if (nights > 3) {
       setShowModal(true);
@@ -28,6 +30,7 @@ export default function UpdateBooking({ params }: { params: { bid: string } }) {
         session?.user.token || ""
       );
     }
+    router.push('/mybooking');
   };
 
   return (

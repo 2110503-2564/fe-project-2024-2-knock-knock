@@ -33,6 +33,12 @@ export default async function HotelDetailPage({
           <div className="text-md mx-5 text-black text-left">
             Tel: {hotelDetail.data.telephone}{" "}
           </div>
+          <div className="text-md mx-5 text-black text-left">
+            Price: {hotelDetail.data.price}{" "}
+          </div>
+          <div className="text-md mx-5 text-black text-left">
+            Promotion: {hotelDetail.data.promotion}{" "}
+          </div>
           <Link
             href={`/booking?id=${params.hid}&model=${hotelDetail.data.model}`}
           >
