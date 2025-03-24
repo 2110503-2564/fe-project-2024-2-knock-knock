@@ -6,9 +6,9 @@ import addBooking from "@/libs/addBooking";
 import { useSession } from "next-auth/react";
 
 const localHotels = [
-  { id: "67e0f6495753215261137de6", name: "Mountain View Inn" },
-  { id: "67e0f6915753215261137de9", name: "Ocean Breeze Resort" },
-  { id: "67e0f6a65753215261137dec", name: "Hotel Sunshine" },
+  { id: "67e12c8a8534dc74f6d313e2", name: "Mountain View Inn" },
+  { id: "67e12c848534dc74f6d313df", name: "Ocean Breeze Resort" },
+  { id: "67e12c7e8534dc74f6d313dc", name: "Hotel Sunshine" },
 ];
 
 export default function Booking() {

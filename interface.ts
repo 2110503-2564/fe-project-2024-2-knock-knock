@@ -6,6 +6,8 @@ interface HotelItem {
   picture: string;
   price: number;
   promotion: string;
+  rating: number;
+  comment: string[];
   createdAt: Date;
   __v: number;
 }
