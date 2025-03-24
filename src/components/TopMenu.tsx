@@ -35,6 +35,7 @@ export default async function TopMenu() {
         <Image
           src={"/img/logo_hotel.jpg"}
           className={styles.logoimg}
+          priority
           alt="logo"
           width={40}
           height={40}

@@ -42,7 +42,7 @@ export default function BookingListClient({
         <div className="w-full max-w-2xl space-y-6">
           {initialBookings.data.map((bookItem) => (
             <div
-              key={bookItem.user}
+              key={bookItem._id}
               className="bg-white rounded-2xl shadow-md p-6 text-black space-y-3 transition duration-300 hover:shadow-lg"
             >
               <div className="text-lg font-medium">
