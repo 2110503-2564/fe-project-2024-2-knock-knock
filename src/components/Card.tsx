@@ -22,6 +22,7 @@ export default function Card({
           alt="Product Picture"
           fill={true}
           className="object-cover rounded-t-lg"
+          priority
         />
       </div>
       <div className="w-full h-[15%] p-[10px] text-black underline">

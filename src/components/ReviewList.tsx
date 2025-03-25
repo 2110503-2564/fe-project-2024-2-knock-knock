@@ -1,31 +1,38 @@
 "use client";
 
-import useSWR from "swr";
-import axios from "axios";
-
-const fetcher = (url: string) => axios.get(url).then((res) => res.data.data);
+import getReviews from "@/libs/getReviews";
+import { useEffect, useState } from "react";
 
 export default function ReviewList({ hotelId }: { hotelId: string }) {
-  const { data, error } = useSWR(
-    `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${hotelId}/reviews`,
-    fetcher
-  );
+  const [review, addReview] = useState<ReviewJson>();
 
-  if (error) return <div>เกิดข้อผิดพลาดในการโหลดรีวิว</div>;
-  if (!data) return <div>กำลังโหลดรีวิว...</div>;
+  useEffect(() => {
+    const fetchReview = async () => {
+      var reviews = await getReviews(hotelId);
+      addReview(reviews);
+    };
+    fetchReview();
+  }, []);
+  if (review === undefined) return null;
 
-  const average = (
-    data.reduce((sum: number, r: any) => sum + r.rating, 0) / data.length
-  ).toFixed(1);
+  const average =
+    review.data.length > 0
+      ? (
+          review.data.reduce(
+            (sum: number, currentReview: any) => sum + currentReview.rating,
+            0
+          ) / review.data.length
+        ).toFixed(2)
+      : 0;
 
   return (
     <div className="text-black">
       <h3>คะแนนเฉลี่ย: {average} ⭐</h3>
       <ul>
-        {data.map((review: any, idx: number) => (
-          <li key={idx}>
-            <strong>{review.rating} ดาว</strong> โดย {review.user}:{" "}
-            {review.comment}
+        {review.data.map((reviewItem) => (
+          <li key={reviewItem.user}>
+            <strong>{reviewItem.rating} ดาว</strong> โดย {reviewItem.user}:{" "}
+            {reviewItem.comment}
           </li>
         ))}
       </ul>

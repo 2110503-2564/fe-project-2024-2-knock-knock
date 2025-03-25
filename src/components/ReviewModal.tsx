@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import Rating from "@mui/material/Rating";
-import axios from "axios";
+import addReview from "@/libs/addReview";
 
-type Props = {
+export default function ReviewModal({
+  hotelId,
+  onClose,
+  token,
+}: {
   hotelId: string;
   onClose: () => void;
-};
-
-export default function ReviewModal({ hotelId, onClose }: Props) {
+  token: string;
+}) {
   const [rating, setRating] = useState<number | null>(0);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
@@ -18,13 +21,7 @@ export default function ReviewModal({ hotelId, onClose }: Props) {
     if (!rating) return alert("กรุณาให้คะแนนก่อนส่ง");
     setLoading(true);
     try {
-      await axios.post(
-        `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${hotelId}/reviews`,
-        {
-          rating,
-          comment,
-        }
-      );
+      await addReview(hotelId, rating, comment, token);
       alert("ส่งรีวิวสำเร็จ");
       setRating(0);
       setComment("");

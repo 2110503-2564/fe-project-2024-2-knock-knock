@@ -7,7 +7,7 @@ export default async function HotelCatalog({
   hotelsJson: Promise<HotelJson>;
 }) {
   const hotelJsonReady = await hotelsJson;
-
+  console.log(hotelJsonReady)
   return (
     <div className="text-black px-6 py-10">
       <h1 className="text-2xl font-semibold text-center mb-6">

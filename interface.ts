@@ -33,3 +33,18 @@ interface BookingJson {
   count: number;
   data: BookingItem[];
 }
+
+interface ReviewItem {
+  _id: string;
+  rating: number;
+  comment: string;
+  hotel: string;
+  user: string;
+  createdAt: Date;
+}
+
+interface ReviewJson{
+  success: boolean;
+  count: number;
+  data: ReviewItem[];
+}
