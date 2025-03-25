@@ -21,56 +21,69 @@ export default function HotelDetailPage({
     };
     fetchHotel();
   }, [params.hid]);
+
   const { data: session } = useSession();
   const [showReviewModal, setShowReviewModal] = useState(false);
+
   if (hotelDetail === undefined) return null;
-  // const hotelDetail = await getHotel(params.hid);
-  console.log(hotelDetail);
+
   return (
-    <main className="text-center p-5 px-40">
-      <h1 className="text-lg font-medium text-black">
+    <main className="p-6 px-10 lg:px-40 bg-gray-50 min-h-screen">
+      <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
         {hotelDetail.data.name}
       </h1>
-      <div className="flex flex-row my-5">
+
+      <div className="flex flex-col lg:flex-row gap-8">
         <Image
           src={hotelDetail.data.picture}
           alt="Hotel Image"
           width={0}
           height={0}
           sizes="80vw"
-          className="rounded-lg w-[800px] h-[700px]"
+          className="rounded-xl w-full lg:w-[800px] h-[400px] lg:h-[700px] object-cover shadow-md"
         />
-        <div className="text-md mx-5 text-black">
-          <div className="text-md mx-5 text-black text-left">
-            Name: {hotelDetail.data.name}
+
+        <div className="flex-1 text-black space-y-4">
+          <div className="text-base text-left">
+            <p>
+              <span className="font-semibold">Name:</span>{" "}
+              {hotelDetail.data.name}
+            </p>
+            <p>
+              <span className="font-semibold">Address:</span>{" "}
+              {hotelDetail.data.address}
+            </p>
+            <p>
+              <span className="font-semibold">Tel:</span>{" "}
+              {hotelDetail.data.telephone}
+            </p>
+            <p>
+              <span className="font-semibold">Price:</span>{" "}
+              {hotelDetail.data.price}
+            </p>
+            <p>
+              <span className="font-semibold">Promotion:</span>{" "}
+              {hotelDetail.data.promotion}
+            </p>
           </div>
-          <div className="text-md mx-5 text-black text-left">
-            Address: {hotelDetail.data.address}{" "}
-          </div>
-          <div className="text-md mx-5 text-black text-left">
-            Tel: {hotelDetail.data.telephone}{" "}
-          </div>
-          <div className="text-md mx-5 text-black text-left">
-            Price: {hotelDetail.data.price}{" "}
-          </div>
-          <div className="text-md mx-5 text-black text-left">
-            Promotion: {hotelDetail.data.promotion}{" "}
-          </div>
+
           <Link href={`/booking?id=${params.hid}}`}>
             <button
-              className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm transition duration-300 shadow-md transform hover:scale-105"
+              className="mt-4 w-full lg:w-auto rounded-md bg-sky-600 hover:bg-indigo-600 px-5 py-2 text-white shadow transition duration-300 transform hover:scale-105"
               name="Book Hotel"
             >
               Book Hotel
             </button>
           </Link>
-          <ReviewList hotelId={params.hid} token={session?.user.token||""}/>
+
+          <div className="mt-10 border-t pt-6">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 text-left">
+              Customer Reviews
+            </h2>
+            <ReviewList hotelId={params.hid} token={session?.user.token || ""} />
+          </div>
         </div>
       </div>
     </main>
   );
 }
-
-// export async function generateStaticParams() {
-//   return [{ hid: "001" }, { hid: "002" }, { hid: "003" }];
-// }

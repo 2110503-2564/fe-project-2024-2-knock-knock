@@ -25,24 +25,12 @@ export default function DiscoveryGallery() {
 
   const handleNext = () => {
     if (!swiperRef.current) return;
-
-    const swiper = swiperRef.current;
-    if (swiper.isEnd) {
-      swiper.slideTo(0); // กลับไปสไลด์แรก
-    } else {
-      swiper.slideNext();
-    }
+    swiperRef.current.slideNext();
   };
 
   const handlePrev = () => {
     if (!swiperRef.current) return;
-
-    const swiper = swiperRef.current;
-    if (swiper.isBeginning) {
-      swiper.slideTo(hotels.length - 1); // ไปสไลด์สุดท้าย
-    } else {
-      swiper.slidePrev();
-    }
+    swiperRef.current.slidePrev();
   };
 
   return (
@@ -56,17 +44,26 @@ export default function DiscoveryGallery() {
           <Swiper
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             slidesPerView={1}
+            slidesPerGroup={1}
             spaceBetween={30}
             loop
-            loopAdditionalSlides={hotels.length}
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
             }}
             breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
+              640: {
+                slidesPerView: 1,
+                slidesPerGroup: 1,
+              },
+              768: {
+                slidesPerView: 2,
+                slidesPerGroup: 2,
+              },
+              1024: {
+                slidesPerView: 3,
+                slidesPerGroup: 3,
+              },
             }}
             pagination={{
               el: ".custom-pagination",
@@ -106,22 +103,26 @@ export default function DiscoveryGallery() {
           {/* Navigation arrows */}
           <button
             onClick={handlePrev}
+            aria-label="Previous Slide"
             className="absolute top-1/2 -translate-y-1/2 left-4 z-30 bg-black text-white rounded-full w-12 h-12 text-xl flex items-center justify-center shadow hover:bg-gray-800 transition"
           >
             ❮
           </button>
           <button
             onClick={handleNext}
+            aria-label="Next Slide"
             className="absolute top-1/2 -translate-y-1/2 right-4 z-30 bg-black text-white rounded-full w-12 h-12 text-xl flex items-center justify-center shadow hover:bg-gray-800 transition"
           >
             ❯
           </button>
 
           {/* Pagination Dots */}
-          <div className="custom-pagination mt-8 flex justify-center space-x-2 z-30 relative 
+          <div
+            className="custom-pagination mt-8 flex justify-center space-x-2 z-30 relative 
             [&>span]:!bg-black 
             [&>span]:!opacity-30 
-            [&>span.swiper-pagination-bullet-active]:!opacity-100" />
+            [&>span.swiper-pagination-bullet-active]:!opacity-100"
+          />
         </div>
       </div>
     </div>

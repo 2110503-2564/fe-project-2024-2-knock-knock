@@ -29,8 +29,14 @@ export default function TopMenu() {
       </div>
 
       {/* Sidebar */}
-      <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
-        <div className={styles.menuItems}>
+      <div className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
+        {/* 
+          Fixed spacing is always applied.
+          If you want to only arrange the buttons when the sidebar is open,
+          you could change this to:
+          {isOpen ? `${styles.menuItems} ${styles.fixedSpacing}` : styles.menuItems}
+        */}
+        <div className={`${styles.menuItems} ${styles.fixedSpacing}`}>
           {session ? (
             <button onClick={() => signOut()} className={styles.linkItem}>
               <FaSignOutAlt className={styles.icon} />
@@ -53,7 +59,7 @@ export default function TopMenu() {
             Booking
           </Link>
 
-          <Link href="/" className={`${styles.linkItem}`}>
+          <Link href="/" className={styles.linkItem}>
             <FaHome className={styles.icon} />
             Home
           </Link>
