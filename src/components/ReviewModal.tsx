@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
 import Rating from "@mui/material/Rating";
+import axios from "axios";
 
 type Props = {
   hotelId: string;
@@ -25,38 +25,49 @@ export default function ReviewModal({ hotelId, onClose }: Props) {
           comment,
         }
       );
+      alert("ส่งรีวิวสำเร็จ");
+      setRating(0);
+      setComment("");
       onClose();
     } catch (err) {
-      console.error("Review failed:", err);
+      console.error(err);
+      alert("เกิดข้อผิดพลาดในการส่งรีวิว");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div style={modalStyle} className="text-black">
-      <div style={modalContentStyle}>
-        <h3>ให้คะแนนโรงแรม</h3>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div className="bg-white p-6 rounded-lg w-[90%] max-w-md shadow-md">
+        <h3 className="text-lg font-semibold mb-3">ให้คะแนนโรงแรม</h3>
 
         <Rating
-          name="hotel-rating"
+          name="rating"
           value={rating}
-          onChange={(_, newValue) => setRating(newValue)}
+          onChange={(_, newVal) => setRating(newVal)}
         />
 
         <textarea
           placeholder="เขียนรีวิว..."
-          rows={4}
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          style={{ width: "100%", marginTop: 8 }}
-          className="bg-white"
+          rows={4}
+          className="w-full mt-3 border border-gray-300 rounded-md p-2 resize-none"
         />
-        <div style={{ marginTop: 8 }}>
-          <button onClick={submitReview} disabled={loading}>
-            ส่ง
+
+        <div className="mt-4 flex justify-end space-x-2">
+          <button
+            onClick={submitReview}
+            disabled={loading}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+          >
+            ส่งรีวิว
           </button>
-          <button onClick={onClose} style={{ marginLeft: 8 }}>
+          <button
+            onClick={onClose}
+            className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
+          >
             ยกเลิก
           </button>
         </div>
@@ -64,23 +75,3 @@ export default function ReviewModal({ hotelId, onClose }: Props) {
     </div>
   );
 }
-
-const modalStyle = {
-  position: "fixed" as const,
-  top: 0,
-  left: 0,
-  width: "100vw",
-  height: "100vh",
-  backgroundColor: "rgba(0,0,0,0.5)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  zIndex: 1000,
-};
-
-const modalContentStyle = {
-  backgroundColor: "white",
-  padding: "16px",
-  borderRadius: "8px",
-  minWidth: "300px",
-};

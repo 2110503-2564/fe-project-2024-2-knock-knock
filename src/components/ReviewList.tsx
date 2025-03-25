@@ -24,7 +24,7 @@ export default function ReviewList({ hotelId }: { hotelId: string }) {
       <ul>
         {data.map((review: any, idx: number) => (
           <li key={idx}>
-            <strong>{review.rating} ดาว</strong> โดย {review.user?.name}:{" "}
+            <strong>{review.rating} ดาว</strong> โดย {review.user}:{" "}
             {review.comment}
           </li>
         ))}
