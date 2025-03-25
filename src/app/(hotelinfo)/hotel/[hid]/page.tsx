@@ -11,7 +11,7 @@ export default async function HotelDetailPage({
   const hotelDetail = await getHotel(params.hid);
 
   return (
-    <main className="text-center p-5">
+    <main className="text-center p-5 px-40">
       <h1 className="text-lg font-medium text-black">
         {hotelDetail.data.name}
       </h1>

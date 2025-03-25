@@ -1,46 +1,74 @@
-import styles from "./topmenu.module.css";
-import Image from "next/image";
-import TopMenuItem from "./TopMenuItem";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+'use client';
+
+import { useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import Image from "next/image";
+import styles from "./topmenu.module.css";
 
-export default async function TopMenu() {
-  const session = await getServerSession(authOptions);
+import {
+  FaBars,
+  FaTimes,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaHome,
+  FaCalendarCheck,
+  FaConciergeBell,
+} from "react-icons/fa";
 
-  const linkClass =
-    "flex items-center px-5 py-2 mx-1 rounded-md text-cyan-700 text-sm hover:bg-cyan-100 transition duration-300transform hover:scale-105";
+export default function TopMenu() {
+  const { data: session } = useSession();
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className={styles.menucontainer}>
-      {session ? (
-        <Link href="/api/auth/signout">
-          <div className={linkClass}>
-            Sign-Out of {session.user?.name}
-          </div>
-        </Link>
-      ) : (
-        <Link href="/api/auth/signin">
-          <div className={linkClass}>Sign-In</div>
-        </Link>
-      )}
-      <Link href="/mybooking">
-        <div className={linkClass}>My Booking</div>
-      </Link>
-      <Link href="/">
-        <div className={linkClass}>Home</div>
-      </Link>
-      <div className="absolute right-0 flex flex-row h-full items-center pr-4 ">
-        <TopMenuItem title="Menu Item Booking" pageRef="/booking" />
-        <Image
-          src={"/img/logo_hotel.jpg"}
-          className={styles.logoimg}
-          priority
-          alt="logo"
-          width={40}
-          height={40}
-        />
+    <>
+      {/* Toggle Button */}
+      <div className={styles.toggleButton} onClick={toggleMenu}>
+        {isOpen ? <FaTimes size={30} /> : <FaBars size={25} />}
       </div>
-    </div>
+
+      {/* Sidebar */}
+      <div className={`${styles.sidebar} ${isOpen ? styles.open : ''}`}>
+        <div className={styles.menuItems}>
+          {session ? (
+            <button onClick={() => signOut()} className={styles.linkItem}>
+              <FaSignOutAlt className={styles.icon} />
+              Sign-Out of {session.user?.name}
+            </button>
+          ) : (
+            <button onClick={() => signIn()} className={styles.linkItem}>
+              <FaSignInAlt className={styles.icon} />
+              Sign-In
+            </button>
+          )}
+
+          <Link href="/mybooking" className={styles.linkItem}>
+            <FaCalendarCheck className={styles.icon} />
+            My Booking
+          </Link>
+
+          <Link href="/booking" className={styles.linkItem}>
+            <FaConciergeBell className={styles.icon} />
+            Booking
+          </Link>
+
+          <Link href="/" className={`${styles.linkItem}`}>
+            <FaHome className={styles.icon} />
+            Home
+          </Link>
+        </div>
+
+        <div className={styles.logoWrapper}>
+          <Image
+            src="/img/logo_hotel.jpg"
+            alt="logo"
+            width={50}
+            height={50}
+            className={styles.logoimg}
+          />
+        </div>
+      </div>
+    </>
   );
 }
