@@ -64,14 +64,7 @@ export default function HotelDetailPage({
               Book Hotel
             </button>
           </Link>
-          {showReviewModal && (
-            <ReviewModal
-              hotelId={hotelDetail.data._id}
-              onClose={() => setShowReviewModal(false)}
-              token={session?.user.token || ""}
-            />
-          )}
-          <ReviewList hotelId={params.hid} />
+          <ReviewList hotelId={params.hid} token={session?.user.token||""}/>
         </div>
       </div>
     </main>
