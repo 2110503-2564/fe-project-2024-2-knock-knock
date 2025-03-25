@@ -25,6 +25,7 @@
     "react-dom": "^18",
     "react-redux": "^9.1.2",
     "redux-persist": "^6.0.0",
+    "swiper": "^11.2.6",
     "swr": "^2.3.3"
   },
   "devDependencies": {

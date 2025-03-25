@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import styles from "./banner.module.css";
+import DiscoveryGallery from "./DiscoveryGallery";
 
 export default function Banner() {
   const covers = [
