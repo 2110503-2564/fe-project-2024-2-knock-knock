@@ -43,7 +43,7 @@ export default async function HotelDetailPage({
             href={`/booking?id=${params.hid}&model=${hotelDetail.data.model}`}
           >
             <button
-              className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm"
+              className="block rounded-md bg-sky-600 hover:bg-indigo-600 px-3 py-2 text-white shadow-sm transition duration-300 shadow-md transform hover:scale-105"
               name="Book Hotel"
             >
               Book Hotel

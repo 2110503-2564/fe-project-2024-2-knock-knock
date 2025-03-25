@@ -9,7 +9,7 @@ export default async function TopMenu() {
   const session = await getServerSession(authOptions);
 
   const linkClass =
-    "flex items-center px-5 py-2 mx-1 rounded-md text-cyan-700 text-sm hover:bg-cyan-100 transition-all duration-200";
+    "flex items-center px-5 py-2 mx-1 rounded-md text-cyan-700 text-sm hover:bg-cyan-100 transition duration-300transform hover:scale-105";
 
   return (
     <div className={styles.menucontainer}>
@@ -30,7 +30,7 @@ export default async function TopMenu() {
       <Link href="/">
         <div className={linkClass}>Home</div>
       </Link>
-      <div className="absolute right-0 flex flex-row h-full items-center pr-4">
+      <div className="absolute right-0 flex flex-row h-full items-center pr-4 ">
         <TopMenuItem title="Menu Item Booking" pageRef="/booking" />
         <Image
           src={"/img/logo_hotel.jpg"}
