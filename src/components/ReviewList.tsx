@@ -12,6 +12,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import addReview from "@/libs/addReview";
 import updateReview from "@/libs/updateReview";
 import { deleteReview } from "@/libs/deleteReview";
+import getUserProfile from "@/libs/getUserProfile";
 
 export default function ReviewList({
   hotelId,
@@ -28,6 +29,7 @@ export default function ReviewList({
   const [editReviewId, setEditReviewId] = useState<string | null>(null); // เก็บ id ของรีวิวที่ต้องการแก้ไข
   const [editRating, setEditRating] = useState<number | null>(0); // เก็บค่าคะแนนสำหรับการแก้ไข
   const [editComment, setEditComment] = useState(""); // เก็บความคิดเห็นสำหรับการแก้ไข
+  const [currentUser, getMe] = useState<any>();
 
   useEffect(() => {
     const fetchReview = async () => {
@@ -36,6 +38,17 @@ export default function ReviewList({
     };
     fetchReview();
   }, [hotelId]);
+
+  if (token !== "") {
+    useEffect(() => {
+      const fetchMe = async () => {
+        const me = await getUserProfile(token);
+        getMe(me);
+      };
+      fetchMe();
+    }, [token]);
+    if (!currentUser) return null;
+  }
 
   if (!review) return null;
 
@@ -66,7 +79,11 @@ export default function ReviewList({
     setCommentsToShow(commentsToShow + 10);
   };
 
-  const handleUpdate = (reviewId: string, currentRating: number, currentComment: string) => {
+  const handleUpdate = (
+    reviewId: string,
+    currentRating: number,
+    currentComment: string
+  ) => {
     setEditReviewId(reviewId);
     setEditRating(currentRating);
     setEditComment(currentComment);
@@ -142,23 +159,34 @@ export default function ReviewList({
       <ul className="space-y-4">
         {review.data.slice(0, commentsToShow).map((reviewItem, index) => (
           <li key={index} className="border-b pb-3 relative">
-            {/* Tool Slot: ปุ่ม Update และ Delete */}
+            {/* Tool Slot: แสดงปุ่ม Update และ Delete */}
             <div className="absolute top-0 right-0 space-x-2 p-1">
-              <Button
-                variant="outlined"
-                size="small"
-                onClick={() => handleUpdate(reviewItem._id, reviewItem.rating, reviewItem.comment)}
-              >
-                Update
-              </Button>
-              <Button
-                variant="outlined"
-                size="small"
-                color="error"
-                onClick={() => handleDelete(reviewItem._id)}
-              >
-                Delete
-              </Button>
+              {(currentUser.data.role === "admin" ||
+                reviewItem.user === currentUser.data.name) && (
+                <>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    onClick={() =>
+                      handleUpdate(
+                        reviewItem._id,
+                        reviewItem.rating,
+                        reviewItem.comment
+                      )
+                    }
+                  >
+                    Update
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    color="error"
+                    onClick={() => handleDelete(reviewItem._id)}
+                  >
+                    Delete
+                  </Button>
+                </>
+              )}
             </div>
 
             <Rating value={reviewItem.rating} precision={0.5} readOnly />

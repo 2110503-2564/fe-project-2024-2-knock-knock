@@ -47,7 +47,7 @@ export default function Banner() {
       />
 
       <div
-        className={`${styles.bannerText} text-center py-12 px-6 bg-white/20 backdrop-blur-md text-white rounded-lg shadow-lg `}
+        className={`${styles.bannerText}  ml-20 py-12 px-6 bg-white/20 backdrop-blur-md text-white rounded-lg shadow-lg`}
       >
         <h1 className="text-5xl font-extrabold tracking-wide mb-4 drop-shadow-lg">
           Your perfect stay, just a booking away.

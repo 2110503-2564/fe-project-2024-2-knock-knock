@@ -1,5 +1,5 @@
 "use client";
-import React, { SyntheticEvent } from "react";
+import React from "react";
 
 export default function InteractiveCard({
   children,
@@ -8,9 +8,6 @@ export default function InteractiveCard({
   children: React.ReactNode;
   contentName: String;
 }) {
-  function onCardSelected() {
-    alert("You Select " + contentName);
-  }
 
   function onCardMouseAction(event: React.SyntheticEvent) {
     if (event.type == "mouseover") {

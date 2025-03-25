@@ -17,6 +17,11 @@ const hotels = [
   { name: "Luxury Escape", location: "Hua Hin, Thailand", image: "/img/cover_hotel4.jpg" },
   { name: "Mountain Resort View", location: "Rayong, Thailand", image: "/img/cover_hotel3.jpg" },
   { name: "Ocean Paradise", location: "Krabi, Thailand", image: "/img/cover_hotel2.jpg" },
+  { name: "Serene Riverside", location: "Kanchanaburi, Thailand", image: "/img/discovery5.jpg" },
+  { name: "The Heritage Boutique", location: "Ayutthaya, Thailand", image: "/img/discovery6.jpg" },
+  { name: "Beachside Bliss", location: "Pattaya, Thailand", image: "/img/discovery7.jpg" },
+  { name: "Hilltop Haven", location: "Mae Hong Son, Thailand", image: "/img/discovery8.jpg" },
+  { name: "Lakeside Retreat", location: "Khao Yai, Thailand", image: "/img/discovery9.jpg" },
 ];
 
 export default function DiscoveryGallery() {
@@ -45,30 +50,18 @@ export default function DiscoveryGallery() {
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             slidesPerView={1}
             slidesPerGroup={1}
-            spaceBetween={30}
+            spaceBetween={20}
             loop
             autoplay={{
               delay: 4000,
               disableOnInteraction: false,
             }}
             breakpoints={{
-              640: {
-                slidesPerView: 1,
-                slidesPerGroup: 1,
-              },
-              768: {
-                slidesPerView: 2,
-                slidesPerGroup: 2,
-              },
-              1024: {
-                slidesPerView: 3,
-                slidesPerGroup: 3,
-              },
+              640: { slidesPerView: 2, slidesPerGroup: 2 },
+              768: { slidesPerView: 3, slidesPerGroup: 3 },
+              1024: { slidesPerView: 4, slidesPerGroup: 4 },
             }}
-            pagination={{
-              el: ".custom-pagination",
-              clickable: true,
-            }}
+            pagination={{ el: ".custom-pagination", clickable: true }}
             modules={[Navigation, Autoplay, Pagination]}
             className="w-full"
           >
@@ -76,52 +69,45 @@ export default function DiscoveryGallery() {
               <SwiperSlide key={i}>
                 <div
                   onClick={() => router.push("/hotel")}
-                  className="relative group rounded-xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:-translate-y-2 h-[350px]"
+                  className="relative group rounded-xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:-translate-y-2 h-[250px]"
                 >
-                  <div className="relative w-full h-full z-0">
-                    <Image
-                      src={hotel.image}
-                      alt={hotel.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                  <Image
+                    src={hotel.image}
+                    alt={hotel.name}
+                    fill
+                    className="object-cover"
+                  />
 
-                  <div className="absolute bottom-0 left-0 right-0 h-48 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-white via-white/80 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 h-32 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-t from-white via-white/80 to-transparent" />
 
-                  <div className="absolute bottom-8 left-8 right-8 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <h3 className="text-2xl font-semibold text-gray-800">
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <h3 className="text-xl font-semibold text-gray-800">
                       {hotel.name}
                     </h3>
-                    <p className="text-base text-gray-700">{hotel.location}</p>
+                    <p className="text-sm text-gray-700">{hotel.location}</p>
                   </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Navigation arrows */}
           <button
             onClick={handlePrev}
             aria-label="Previous Slide"
-            className="absolute top-1/2 -translate-y-1/2 left-4 z-30 bg-black text-white rounded-full w-12 h-12 text-xl flex items-center justify-center shadow hover:bg-gray-800 transition"
+            className="absolute top-1/2 -translate-y-1/2 left-4 z-30 bg-black text-white rounded-full w-10 h-10 text-xl flex items-center justify-center shadow hover:bg-gray-800 transition"
           >
             ❮
           </button>
           <button
             onClick={handleNext}
             aria-label="Next Slide"
-            className="absolute top-1/2 -translate-y-1/2 right-4 z-30 bg-black text-white rounded-full w-12 h-12 text-xl flex items-center justify-center shadow hover:bg-gray-800 transition"
+            className="absolute top-1/2 -translate-y-1/2 right-4 z-30 bg-black text-white rounded-full w-10 h-10 text-xl flex items-center justify-center shadow hover:bg-gray-800 transition"
           >
             ❯
           </button>
 
-          {/* Pagination Dots */}
           <div
-            className="custom-pagination mt-8 flex justify-center space-x-2 z-30 relative 
-            [&>span]:!bg-black 
-            [&>span]:!opacity-30 
-            [&>span.swiper-pagination-bullet-active]:!opacity-100"
+            className="custom-pagination mt-8 flex justify-center space-x-2 z-30 relative [&>span]:!bg-black [&>span]:!opacity-30 [&>span.swiper-pagination-bullet-active]:!opacity-100"
           />
         </div>
       </div>

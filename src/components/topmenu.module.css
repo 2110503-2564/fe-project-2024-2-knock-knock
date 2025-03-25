@@ -4,7 +4,8 @@
   left: 0;
   width: 80px;
   height: 100vh;
-  background-color: #f0f9ff;
+  background-color: rgba(240, 249, 255, 0.7); /* ปรับ opacity ที่ 0.7 หรือค่าอื่นตามต้องการ */
+  backdrop-filter: blur(10px); /* เพิ่มความสวยงามด้วยการเบลอพื้นหลัง */
   transition: width 0.3s ease;
   overflow-x: hidden;
   display: flex;
@@ -13,6 +14,7 @@
   z-index: 1000;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
+
 
 .fixedSpacing {
   display: flex;

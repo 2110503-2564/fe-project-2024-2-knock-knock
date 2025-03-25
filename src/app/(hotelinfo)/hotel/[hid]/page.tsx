@@ -3,7 +3,6 @@ import Image from "next/image";
 import getHotel from "@/libs/getHotel";
 import Link from "next/link";
 import ReviewList from "@/components/ReviewList";
-import ReviewModal from "@/components/ReviewModal";
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 
@@ -13,7 +12,7 @@ export default function HotelDetailPage({
   params: { hid: string };
 }) {
   const [hotelDetail, getHotelDeatail] = useState<any>();
-
+  
   useEffect(() => {
     const fetchHotel = async () => {
       var hotel = await getHotel(params.hid);
@@ -23,7 +22,6 @@ export default function HotelDetailPage({
   }, [params.hid]);
 
   const { data: session } = useSession();
-  const [showReviewModal, setShowReviewModal] = useState(false);
 
   if (hotelDetail === undefined) return null;
 

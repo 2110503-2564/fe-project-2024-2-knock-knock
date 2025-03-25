@@ -48,3 +48,18 @@ interface ReviewJson{
   count: number;
   data: ReviewItem[];
 }
+
+interface UserItem{
+  _id: string;
+  name:string;
+  phone:string;
+  email:string;
+  role:string;
+  createdAt:Date;
+  __v:number;
+}
+
+interface UserJson{
+  success:boolean;
+  data:UserItem[];
+}
