@@ -37,8 +37,8 @@ export default function HotelDetailPage({
           alt="Hotel Image"
           width={0}
           height={0}
-          sizes="100vw"
-          className="rounded-lg w-[30%]"
+          sizes="80vw"
+          className="rounded-lg w-[800px] h-[700px]"
         />
         <div className="text-md mx-5 text-black">
           <div className="text-md mx-5 text-black text-left">
@@ -64,12 +64,6 @@ export default function HotelDetailPage({
               Book Hotel
             </button>
           </Link>
-          <button
-            onClick={() => setShowReviewModal(true)}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            เขียนรีวิว
-          </button>
           {showReviewModal && (
             <ReviewModal
               hotelId={hotelDetail.data._id}
