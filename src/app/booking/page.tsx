@@ -4,6 +4,7 @@ import { useState } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import addBooking from "@/libs/addBooking";
 import { useSession } from "next-auth/react";
+import ReviewModal from "@/components/ReviewModal";
 
 const localHotels = [
   { id: "67e12c8a8534dc74f6d313e2", name: "Mountain View Inn" },
@@ -17,6 +18,7 @@ export default function Booking() {
   const [nights, setNight] = useState<number>(1);
   const [showModal, setShowModal] = useState(false);
   const { data: session } = useSession();
+  const [showReview, setShowReview] = useState(false);
 
   const makebooking = async () => {
     if (nights > 3) {
@@ -39,6 +41,7 @@ export default function Booking() {
         nights,
         session?.user.token || ""
       );
+      setShowReview(true);
     }
   };
 
@@ -92,6 +95,10 @@ export default function Booking() {
             </div>
           </div>
         </div>
+      )}
+
+      {showReview && (
+        <ReviewModal hotelId={hotel} onClose={() => setShowReview(false)} />
       )}
     </>
   );

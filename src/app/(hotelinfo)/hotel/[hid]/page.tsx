@@ -1,6 +1,7 @@
 import Image from "next/image";
 import getHotel from "@/libs/getHotel";
 import Link from "next/link";
+import ReviewList from "@/components/ReviewList";
 
 export default async function HotelDetailPage({
   params,
@@ -50,6 +51,7 @@ export default async function HotelDetailPage({
             </button>
           </Link>
         </div>
+        <ReviewList hotelId={params.hid} />
       </div>
     </main>
   );
