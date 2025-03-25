@@ -5,7 +5,7 @@ export default async function userRegister(
     password: string
   ) {
     const response = await fetch(
-      "http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/auth/register",
+      "https://back-end-knock-knock.vercel.app/api/v1/auth/register",
       {
         method: "POST",
         headers: {

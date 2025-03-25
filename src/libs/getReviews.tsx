@@ -1,6 +1,6 @@
 export default async function getReviews(hotelId: string) {
   const response = await fetch(
-    `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${hotelId}/reviews`,
+    `https://back-end-knock-knock.vercel.app/api/v1/hotels/${hotelId}/reviews`,
     {
       method: "GET",
       headers: {

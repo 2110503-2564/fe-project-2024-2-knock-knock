@@ -9,7 +9,7 @@ export default async function addBooking(
   console.log(bookingDate)
   console.log(hotelId)
   const response = await fetch(
-    `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${hotelId}/bookings`,
+    `https://back-end-knock-knock.vercel.app/api/v1/hotels/${hotelId}/bookings`,
     {
       method: "POST",
       headers: {

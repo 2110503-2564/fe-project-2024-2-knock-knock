@@ -1,6 +1,6 @@
 export default async function getHotel(id: string) {
   const response = await fetch(
-    `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${id}`
+    `https://back-end-knock-knock.vercel.app/api/v1/hotels/${id}`
   );
   console.log(id);
   console.log(response.status);
