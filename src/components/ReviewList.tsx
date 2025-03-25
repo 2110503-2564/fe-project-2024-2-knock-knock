@@ -3,10 +3,13 @@
 import useSWR from "swr";
 import axios from "axios";
 
-const fetcher = (url: string) => axios.get(url).then((res) => res.data);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data.data);
 
 export default function ReviewList({ hotelId }: { hotelId: string }) {
-  const { data, error } = useSWR(`/api/reviews?hotelId=${hotelId}`, fetcher);
+  const { data, error } = useSWR(
+    `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${hotelId}/reviews`,
+    fetcher
+  );
 
   if (error) return <div>เกิดข้อผิดพลาดในการโหลดรีวิว</div>;
   if (!data) return <div>กำลังโหลดรีวิว...</div>;
@@ -21,7 +24,8 @@ export default function ReviewList({ hotelId }: { hotelId: string }) {
       <ul>
         {data.map((review: any, idx: number) => (
           <li key={idx}>
-            <strong>{review.rating} ดาว</strong>: {review.comment}
+            <strong>{review.rating} ดาว</strong> โดย {review.user?.name}:{" "}
+            {review.comment}
           </li>
         ))}
       </ul>

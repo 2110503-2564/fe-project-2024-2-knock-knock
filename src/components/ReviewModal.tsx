@@ -18,11 +18,13 @@ export default function ReviewModal({ hotelId, onClose }: Props) {
     if (!rating) return alert("กรุณาให้คะแนนก่อนส่ง");
     setLoading(true);
     try {
-      await axios.post("/api/reviews", {
-        hotelId,
-        rating,
-        comment,
-      });
+      await axios.post(
+        `http://newhotels-env.eba-qbmbbabk.us-east-1.elasticbeanstalk.com/api/v1/hotels/${hotelId}/reviews`,
+        {
+          rating,
+          comment,
+        }
+      );
       onClose();
     } catch (err) {
       console.error("Review failed:", err);
